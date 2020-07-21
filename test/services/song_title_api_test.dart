@@ -6,7 +6,9 @@ void main() {
 
     final mmd = MusicMetadata();    
 
-    await mmd.search("Juice Wrld Lucid Dreams (Offical Music Video)");
+    // await mmd.search("Juice Wrld Lucid Dreams (Offical Music Video)");
+
+    await mmd.search("Juice WRLD - Bandit ft. NBA Youngboy");
     print("Title: " + mmd.getTitleName());
     print("Artist Name: " + mmd.getArtistName());
     print("Album Name: "+ mmd.getAlbumName());

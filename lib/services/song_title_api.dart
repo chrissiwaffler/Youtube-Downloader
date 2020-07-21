@@ -33,6 +33,16 @@ class MusicMetadata {
       print("Splitting wurde angewendet: \n >> neuer Titel: " + parts[0]);
     }
 
+    String keyWordFt = "ft";
+
+    if (yt_title.contains(keyWordFt)) {
+      var parts = yt_title.split(keyWordFt);
+      assert(!parts[0].contains(keyWordFt));
+
+      yt_title = parts[0];
+      print("neues Splitting wurde angewendet: \n >> neuer Titel: " + yt_title);
+    }
+
     final response = await http.get(
       base_url + "q=" + yt_title,
       headers: headers
