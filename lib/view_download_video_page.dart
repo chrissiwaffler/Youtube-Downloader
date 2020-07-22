@@ -30,6 +30,11 @@ class _DownloadPageState extends State<DownloadPage> {
 
   MusicMetadata mmd;
 
+  bool isDownloading;
+  bool isDownloadStarted;
+
+  // TODO remove
+  final bool downloading2 = true;
 
   @override
   void initState() { 
@@ -49,6 +54,9 @@ class _DownloadPageState extends State<DownloadPage> {
 
     // Autocompletion of the music metadata
     mmd = MusicMetadata();
+
+    isDownloading = false;
+    isDownloadStarted  = false;
   }
   
   @override
@@ -71,7 +79,11 @@ class _DownloadPageState extends State<DownloadPage> {
             metadataContainer(),          
             SizedBox(height: 10),
             downloadContainer(),
-            SizedBox(height: 50)
+            SizedBox(height: 50),
+
+            // if the app is downloading right now
+            isDownloadStarted?downloadProgress():SizedBox(height: 10)
+
           ],
         ),
 
@@ -276,9 +288,32 @@ class _DownloadPageState extends State<DownloadPage> {
         )
       ),
 
-      onPressed: () {
+      onPressed: () async {
         print("Download Audio");
+
+        setState(() {
+          isDownloadStarted = true;
+          isDownloading = true;
+        });
+
         // TODO Implementation of download audio
+        var d = Downloader(widget.videoID);
+        await d.downloadMusic(txtTitle.text, txtArtist.text, txtAlbum.text);
+
+        // Show that the file was downloaded.
+        // await showDialog(
+        //   context: context,
+        //   builder: (context) {
+        //     return AlertDialog(
+        //       content: Text(
+        //         'Download completed and saved to: Downloads'),
+        //     );
+        //   },
+        // );
+
+        setState(() {
+          isDownloading = false;
+        });
 
       },
     );
@@ -303,22 +338,85 @@ class _DownloadPageState extends State<DownloadPage> {
 
       onPressed: () async {
         print("Download Video"); 
+        setState(() {
+          isDownloadStarted = true;
+          isDownloading = true;
+        });
         //TODO Implementation of download video
 
         var d = Downloader(widget.videoID);
         await d.downloadVideo(txtTitle.text, txtArtist.text, txtAlbum.text);
 
+        setState(() {
+          isDownloading = false;
+        });
         // Show that the file was downloaded.
-        await showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text(
-                  'Download completed and saved to: Downloads'),
-            );
-          },
-        );
+        // await showDialog(
+        //   context: context,
+        //   builder: (context) {
+        //     return AlertDialog(
+        //       content: Text(
+        //         'Download completed and saved to: Downloads'),
+        //     );
+        //   },
+        // );
       },
     );
   }
+
+  
+
+  // showing progress of download:
+  Widget downloadProgress() {
+    return Container(
+      padding: EdgeInsets.only(top: 15, bottom: 30),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: download_page_blue_box_color,
+        borderRadius: BorderRadius.circular(35),
+        boxShadow: [BoxShadow(
+          offset: Offset(0, 0),
+          color: Color.fromRGBO(0, 0, 0, 0.25),
+          blurRadius: 20
+        )]
+      ),
+
+      child: Column(
+        children: <Widget>[
+          Text(
+            "Download " + (isDownloading?"gestartet":"fertig"),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+              fontFamily: "SF Pro Rounded",
+              fontWeight: FontWeight.w600
+            ),
+          ),
+
+          SizedBox(height: 10),
+          
+          // shows Progress Indicator or a Text when finished
+          isDownloading?ProgressIndi():textFinished()
+        
+        ],
+      )
+    );
+  }
+
+  Widget textFinished() {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      child: Text(
+        "Download gespeichert in: Downloads",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 19,
+          fontWeight: FontWeight.normal,
+          fontFamily: "SF Pro Rounded"
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
 }
