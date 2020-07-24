@@ -18,11 +18,15 @@ class _HomepageState extends State<Homepage> {
   bool isStart;
   String query;
 
+  // determines whether the TextInputField should be in focus
+  bool focusInputField;
+
   void initState() {
     super.initState();
     isStart = true;
     _controller = TextEditingController();
     
+    focusInputField = false;
   }
 
   void dispose() {
@@ -35,7 +39,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   Widget homescreenText() {
-    return Center(
+    return GestureDetector(
       child: Container(
         alignment: Alignment.center,
         // color: Colors.white,
@@ -62,6 +66,15 @@ class _HomepageState extends State<Homepage> {
 
         constraints: BoxConstraints.expand(width: MediaQuery.of(context).size.width - 50, height: MediaQuery.of(context).size.width/2)
       ),
+
+      // tap on the text focuses the TextInputField
+      onTap: () {
+        setState(() {
+          focusInputField = true;
+          // TODO doesnt work right
+          print(focusInputField);
+        });
+      },
     );
   }
 
@@ -108,6 +121,7 @@ class _HomepageState extends State<Homepage> {
               callSearch(_controller.text);
             },
             
+            autofocus: focusInputField,
 
           ),
         )
@@ -115,17 +129,24 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
+  // one of the two following widgets is used 
   Widget homescreenColumnONSTART() {
-    return Column(children: <Widget>[
-      homescreenInputField(),
-      SizedBox(height: 50),
-      homescreenText(),
-      SizedBox(height: 50),
-      homescreenImage()
-    ]);
+    // use SingleChildScrollView to avoid overflowing
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          homescreenInputField(),
+          SizedBox(height: 50),
+          homescreenText(),
+          SizedBox(height: 50),
+          homescreenImage(),
+          SizedBox(height: 50)
+        ]
+      ),
+
+      physics: BouncingScrollPhysics(),
+    );
   }
-
-
 
   Widget homescreenColumnONSEARCH() {
     return Column(
@@ -196,42 +217,36 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("YouTube",
-          textAlign: TextAlign.right,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Youtube Downloader",
+          textAlign: TextAlign.center,
           style: TextStyle(
             // fontSize: 31,
             fontFamily: "SF Pro Rounded"
             
           ),
-          ),
-          backgroundColor: Colors.red,
         ),
-        backgroundColor: background_app_color,
-
-        drawer: SwipeBar(),
-
-        body: isStart?homescreenColumnONSTART():homescreenColumnONSEARCH()
-        
-
+        backgroundColor: Colors.red,
       ),
+      backgroundColor: background_app_color,
+      // drawer: SwipeBar(),
+      body: isStart?homescreenColumnONSTART():homescreenColumnONSEARCH(),
     );
   }
 
   void callSearch(String query) {
     print(query);
     // TODO Wiederumändern
-    // setState(() {
-    //   isStart = false;
-    //   this.query = query;
-    // });
+    setState(() {
+      isStart = false;
+      this.query = query;
+    });
 
     // folgende Zeilen wieder entfernen
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => new DownloadPage(title: "Lucid Dreams Juice WRLD", videoID: "mzB1VGEGcSU"),)
-    );
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(builder: (context) => new DownloadPage(title: "Lucid Dreams Juice WRLD", videoID: "mzB1VGEGcSU"),)
+    // );
 
   } 
 
