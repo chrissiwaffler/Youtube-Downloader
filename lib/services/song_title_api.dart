@@ -34,7 +34,10 @@ class MusicMetadata {
     }
 
     String keyWordFt = "ft";
-
+    String keyWordFt2 = "feat";
+    if (yt_title.contains(keyWordFt2)) {
+      keyWordFt = keyWordFt2;
+    }
     if (yt_title.contains(keyWordFt)) {
       var parts = yt_title.split(keyWordFt);
       assert(!parts[0].contains(keyWordFt));

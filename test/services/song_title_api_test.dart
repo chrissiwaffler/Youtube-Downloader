@@ -8,9 +8,15 @@ void main() {
 
     // await mmd.search("Juice Wrld Lucid Dreams (Offical Music Video)");
 
-    await mmd.search("Juice WRLD - Bandit ft. NBA Youngboy");
+    await mmd.search("DaBaby - Rockstar feat. Roddy Ricch");
     print("Title: " + mmd.getTitleName());
     print("Artist Name: " + mmd.getArtistName());
     print("Album Name: "+ mmd.getAlbumName());
+
+    final mmd2 = MusicMetadata();
+    await mmd2.search("DaBaby - Rockstar feat. Roddy Ricch (Official Music Video)");
+    print("Title: " + mmd2.getTitleName());
+    print("Artist Name: " + mmd2.getArtistName());
+    print("Album Name: "+ mmd2.getAlbumName());
   });
 }
