@@ -45,3 +45,16 @@ app.*.map.json
 # secrets of app
 # API Keys
 lib/secrets
+
+# google services .json file
+android/app/google-services.json
+
+# key properties
+android/key.properties
+
+texts/
+
+different_logos
+
+# unused services
+lib/services/unused/

@@ -2,12 +2,12 @@ import 'package:audiotagger/audiotagger.dart';
 import 'package:youtube_downloader/index.dart';
 import 'package:audiotagger/models/tag.dart';
 
-class MetadataEditor2 {
+class MetadataEditor {
   // https://pub.dev/packages/audiotagger
 
   Audiotagger tagger;
 
-  MetadataEditor2() {
+  MetadataEditor() {
     tagger = new Audiotagger();
   }
   
@@ -17,20 +17,6 @@ class MetadataEditor2 {
     if (!await Permission.storage.request().isGranted) {
       await _checkPermissions();
     }
-  }
-
-  Future<void> setTags2(String filePath, String title, String artist, String album) async {
-    final tags = <String, String> {
-      "title": title,
-      "artist": artist,
-      "album": album,
-      "genre": null,
-    };
-    _checkPermissions();
-    
-    // final filePath = "//storage//emulated//0//Download//Youtube Downloader Music//Conversations.mp3";
-    final result = await tagger.writeTagsFromMap(path: filePath, tags: tags);
-    print("Schreiben: " + result.toString());
   }
 
   Future<void> setTags(String filePath, String title, String artist, String album) async {

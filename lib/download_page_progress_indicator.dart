@@ -35,7 +35,7 @@ class _ProgressIndiState extends State<ProgressIndi> with SingleTickerProviderSt
     return Container(
       margin: EdgeInsets.only(top: 10),
       width: MediaQuery.of(context).size.width * 0.9,
-      height: 15,
+      height: 10,
       child: LinearProgressIndicator(
         valueColor: _animationColor,
         backgroundColor: download_page_blue_box_color,

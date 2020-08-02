@@ -71,7 +71,8 @@ class _HomepageState extends State<Homepage> {
       onTap: () {
         setState(() {
           focusInputField = true;
-          // TODO doesnt work right
+          // TODO doesnt work right 
+          // https://flutter.dev/docs/cookbook/forms/focus#focus-a-text-field-when-a-button-is-tapped
           print(focusInputField);
         });
       },

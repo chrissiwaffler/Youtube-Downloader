@@ -28,13 +28,8 @@ class _DownloadPageState extends State<DownloadPage> {
 
   TextEditingController txtTitle, txtArtist, txtAlbum;
 
-  MusicMetadata mmd;
-
   bool isDownloading;
   bool isDownloadStarted;
-
-  // TODO remove
-  final bool downloading2 = true;
 
   @override
   void initState() { 
@@ -51,9 +46,6 @@ class _DownloadPageState extends State<DownloadPage> {
     txtTitle = TextEditingController();
     txtArtist = TextEditingController();
     txtAlbum = TextEditingController();
-
-    // Autocompletion of the music metadata
-    mmd = MusicMetadata();
 
     isDownloading = false;
     isDownloadStarted  = false;
@@ -79,11 +71,12 @@ class _DownloadPageState extends State<DownloadPage> {
             metadataContainer(),          
             SizedBox(height: 10),
             downloadContainer(),
-            SizedBox(height: 50),
+            SizedBox(height: 30),
 
             // if the app is downloading right now
-            isDownloadStarted?downloadProgress():SizedBox(height: 10)
+            isDownloadStarted?downloadProgress():SizedBox(height: 10),
 
+            SizedBox(height: 50)
           ],
         ),
 
@@ -206,6 +199,8 @@ class _DownloadPageState extends State<DownloadPage> {
       
       // calling the MusicMetadata to complete the metadata
       onPressed: () async {
+        // Autocompletion of the music metadata
+        MusicMetadata mmd = MusicMetadata();
         await mmd.search(widget.title);
         String title = mmd.getTitleName();
         String artist = mmd.getArtistName();
@@ -311,6 +306,8 @@ class _DownloadPageState extends State<DownloadPage> {
         //   },
         // );
 
+
+
         setState(() {
           isDownloading = false;
         });
@@ -370,6 +367,7 @@ class _DownloadPageState extends State<DownloadPage> {
   Widget downloadProgress() {
     return Container(
       padding: EdgeInsets.only(top: 15, bottom: 30),
+      margin: EdgeInsets.only(left: 10, right: 10),
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: download_page_blue_box_color,
