@@ -30,8 +30,47 @@ dependencies:
   youtube_extractor: ^1.0.3
 
   # youtube api to get data of youtube video
+
+  # disable, unused
   youtube_api: ^0.7.2
-  youtube_api_v3: ^0.0.3
+  
+  
+  # youtube_api_v3: ^0.0.3
+
+  # official youtube player flutter plugin
+  youtube_player_flutter: ^7.0.0+7
+
+  # flutter downloader
+  # flutter_downloader: ^1.4.4
+
+  # path provider
+  # path_provider: ^1.6.11
+  downloads_path_provider: ^0.1.0
+
+  
+  # permission handler
+  permission_handler: ^5.0.1+1
+  
+  # youtube_explode_dart instead of youtube extractor 
+  # download youtube audio and video
+  youtube_explode_dart: ^1.4.1+3
+
+
+  # editing metadata of file
+  dart_tags: ^0.2.3
+  # alternative to dart_tags
+  audiotagger: ^1.1.0
+  # or mp3editor
+  mp3editor: ^0.0.2
+
+  # beautiful drawer of the sidebar
+  kf_drawer: ^1.1.2
+  # needs also class_builder
+  class_builder: ^1.0.1
+
+
+  # Admob integraton
+  # firebase_admob: ^0.9.3+2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,6 +79,11 @@ dependencies:
 
   # for adobe xd export
   adobe_xd: ^0.1.4
+
+
+  # to convert from .webm to .mp3
+  flutter_ffmpeg: ^0.2.10
+
 
 
 dev_dependencies:
