@@ -284,33 +284,33 @@ class _DownloadPageState extends State<DownloadPage> {
       ),
 
       onPressed: () async {
-        print("Download Audio");
+        if (txtTitle.text == null || txtTitle.text == "") {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text(
+                  "Please enter a Title to start the download"
+                )
+              );
+            }
+          );
+        }
+        else {
+          print("Download Audio");
+          setState(() {
+            isDownloadStarted = true;
+            isDownloading = true;
+          });
+    
+          var d = Downloader(widget.videoID);
+          await d.downloadMusic(txtTitle.text, txtArtist.text, txtAlbum.text);
 
-        setState(() {
-          isDownloadStarted = true;
-          isDownloading = true;
-        });
-
-        // TODO Implementation of download audio
-        var d = Downloader(widget.videoID);
-        await d.downloadMusic(txtTitle.text, txtArtist.text, txtAlbum.text);
-
-        // Show that the file was downloaded.
-        // await showDialog(
-        //   context: context,
-        //   builder: (context) {
-        //     return AlertDialog(
-        //       content: Text(
-        //         'Download completed and saved to: Downloads'),
-        //     );
-        //   },
-        // );
-
-
-
-        setState(() {
-          isDownloading = false;
-        });
+          setState(() {
+            isDownloading = false;
+          });
+        }
+        
 
       },
     );
@@ -334,29 +334,32 @@ class _DownloadPageState extends State<DownloadPage> {
       ),
 
       onPressed: () async {
-        print("Download Video"); 
-        setState(() {
-          isDownloadStarted = true;
-          isDownloading = true;
+        if (txtTitle.text == null || txtTitle.text == "") {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text(
+                  "Please enter a Title to start the download"
+                )
+              );
+            }
+          );
+        }
+        else {
+          print("Download Video"); 
+          setState(() {
+            isDownloadStarted = true;
+            isDownloading = true;
+          });
+          
+          var d = Downloader(widget.videoID);
+          await d.downloadVideo(txtTitle.text, txtArtist.text, txtAlbum.text);
+          
+          setState(() {
+            isDownloading = false;
         });
-        //TODO Implementation of download video
-
-        var d = Downloader(widget.videoID);
-        await d.downloadVideo(txtTitle.text, txtArtist.text, txtAlbum.text);
-
-        setState(() {
-          isDownloading = false;
-        });
-        // Show that the file was downloaded.
-        // await showDialog(
-        //   context: context,
-        //   builder: (context) {
-        //     return AlertDialog(
-        //       content: Text(
-        //         'Download completed and saved to: Downloads'),
-        //     );
-        //   },
-        // );
+        }
       },
     );
   }
