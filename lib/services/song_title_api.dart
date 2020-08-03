@@ -60,8 +60,9 @@ class MusicMetadata {
       album = data[0]["album"]["title"];
 
       albumCoverLink = data[0]["album"]["cover_medium"];
-
       print(title + " | " + artist + " | " + album);
+
+      print(albumCoverLink);
     }
   }
 

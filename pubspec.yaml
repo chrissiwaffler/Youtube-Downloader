@@ -84,6 +84,9 @@ dependencies:
   # to convert from .webm to .mp3
   flutter_ffmpeg: ^0.2.10
 
+  # download images
+  image_downloader: ^0.20.0
+
 
 
 dev_dependencies:

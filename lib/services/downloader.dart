@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/services.dart';
+import 'package:http/http.dart';
 import 'package:youtube_downloader/index.dart';
 import 'package:path/path.dart' as path;
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
@@ -100,7 +102,7 @@ class Downloader {
     print(">> Download finished");  
   }
 
-  Future<void> downloadMusic(String title, String artist, String album) async {
+  Future<void> downloadMusic(String title, String artist, String album, String albumCoverLink) async {
     print(">> Start Download");
     _checkPermissions();
 
@@ -153,15 +155,42 @@ class Downloader {
       filePath = outputPath;
     }
 
-    await editMetadata(filePath.toString(), title, artist, album);
+    await editMetadata(filePath.toString(), title, artist, album, albumCoverLink);
 
     print(">> Download finished");
   }
 
 
-  Future<void> editMetadata(String pathFile, String title, String artist, String album) async {
+  Future<void> editMetadata(String pathFile, String title, String artist, String album, String albumCoverLink) async {
+    
+    // downloads the image of the album cover 
+    String artworkPath;
+    if (albumCoverLink != "" || albumCoverLink == null) {
+      
+      try {
+        // Saved with this method.
+        var imageId = await ImageDownloader.downloadImage(albumCoverLink, destination: AndroidDestinationType.directoryDownloads
+          ..subDirectory("/Youtube Downloader Music/artworks/artwork.jpg"));
+        
+        if (imageId == null) {
+          return;
+        }
+        artworkPath = await ImageDownloader.findPath(imageId);
+      } on PlatformException catch (error) {
+        print(error);
+      }
+    }
+    else {
+      artworkPath = null;
+    }
+    
     final mde = MetadataEditor();
-    await mde.setTags(pathFile, title, artist, album);
+    await mde.setTags(pathFile, title, artist, album, artworkPath);
+
+    if (artworkPath != null) {
+      var file = File(artworkPath);
+      await file.delete();
+    }
   }
 
   /// set new ending for music file e.g. mp3, wav or webm

@@ -1,4 +1,5 @@
 import 'package:audiotagger/audiotagger.dart';
+import 'package:http/http.dart';
 import 'package:youtube_downloader/index.dart';
 import 'package:audiotagger/models/tag.dart';
 
@@ -19,15 +20,15 @@ class MetadataEditor {
     }
   }
 
-  Future<void> setTags(String filePath, String title, String artist, String album) async {
+  Future<void> setTags(String filePath, String title, String artist, String album, String artworkPath) async {    
     Tag tags = Tag(
       title: title,
       artist: artist,
-      album: album
+      album: album,
+      artwork: artworkPath
     );
     
     final result = await tagger.writeTags(path: filePath, tag: tags);
     print("Schreiben: " + result.toString());
   }
-
 }

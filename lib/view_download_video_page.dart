@@ -21,12 +21,8 @@ class _DownloadPageState extends State<DownloadPage> {
 
   YoutubePlayerController _controller;
 
-  // _DownloadPageState(String title, String videoID) {
-  //   this.title = title;
-  //   this.videoID = videoID;
-  // }
-
   TextEditingController txtTitle, txtArtist, txtAlbum;
+  String albumCoverLink;
 
   bool isDownloading;
   bool isDownloadStarted;
@@ -215,6 +211,9 @@ class _DownloadPageState extends State<DownloadPage> {
           txtTitle.text = title;
           txtArtist.text = artist;
           txtAlbum.text = album;
+
+          // Add Album Cover
+          albumCoverLink = mmd.getAlbumCoverLink();
         });
       },
       
@@ -304,7 +303,7 @@ class _DownloadPageState extends State<DownloadPage> {
           });
     
           var d = Downloader(widget.videoID);
-          await d.downloadMusic(txtTitle.text, txtArtist.text, txtAlbum.text);
+          await d.downloadMusic(txtTitle.text, txtArtist.text, txtAlbum.text, albumCoverLink);
 
           setState(() {
             isDownloading = false;
