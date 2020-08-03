@@ -58,3 +58,6 @@ different_logos
 
 # unused services
 lib/services/unused/
+
+# unused libs
+lib/unused/
