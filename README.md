@@ -1,4 +1,16 @@
-# youtube_downloader
+# Youtube Downloader
+
+## Activity Overview
+![GitHub last commit](https://img.shields.io/github/last-commit/CodingLegend27/youtube-downloader)
+
+
+## Release Overview
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/CodingLegend27/Youtube-Downloader)
+![GitHub Release Date](https://img.shields.io/github/release-date/CodingLegend27/youtube-downloader)
+
+## Project Overview
+![GitHub language count](https://img.shields.io/github/languages/count/CodingLegend27/youtube-downloader)
+![GitHub top language](https://img.shields.io/github/languages/top/CodingLegend27/youtube-downloader)
 
 
 project's package name: com.thelegend27.youtube_downloader
