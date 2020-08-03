@@ -1,4 +1,4 @@
-# youtube_downloader
+# Youtube Downloader
 
 ## Activity Overview
 ![GitHub last commit](https://img.shields.io/github/last-commit/CodingLegend27/youtube-downloader)
