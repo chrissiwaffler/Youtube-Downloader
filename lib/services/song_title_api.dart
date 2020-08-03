@@ -59,7 +59,8 @@ class MusicMetadata {
       artist = data[0]["artist"]["name"];
       album = data[0]["album"]["title"];
 
-      albumCoverLink = data[0]["album"]["cover_medium"];
+      // using 'big' quality
+      albumCoverLink = data[0]["album"]["cover_big"];
       print(title + " | " + artist + " | " + album);
 
       print(albumCoverLink);
