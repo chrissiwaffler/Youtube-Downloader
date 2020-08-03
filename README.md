@@ -10,7 +10,7 @@
 
 ## Project Overview
 ![GitHub language count](https://img.shields.io/github/languages/count/CodingLegend27/youtube-downloader)
-
+![GitHub top language](https://img.shields.io/github/languages/top/CodingLegend27/youtube-downloader)
 
 
 project's package name: com.thelegend27.youtube_downloader
