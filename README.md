@@ -1,5 +1,6 @@
 # youtube_downloader
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/CodingLegend27/Youtube-Downloader)
 
 project's package name: com.thelegend27.youtube_downloader
 
