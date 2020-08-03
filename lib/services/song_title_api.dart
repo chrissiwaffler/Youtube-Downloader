@@ -33,8 +33,8 @@ class MusicMetadata {
       print("Splitting wurde angewendet: \n >> neuer Titel: " + parts[0]);
     }
 
-    String keyWordFt = "ft";
-    String keyWordFt2 = "feat";
+    String keyWordFt = " ft";
+    String keyWordFt2 = " feat";
     if (yt_title.contains(keyWordFt2)) {
       keyWordFt = keyWordFt2;
     }

@@ -18,5 +18,12 @@ void main() {
     print("Title: " + mmd2.getTitleName());
     print("Artist Name: " + mmd2.getArtistName());
     print("Album Name: "+ mmd2.getAlbumName());
+
+    final mmd3 = MusicMetadata();
+    await mmd3.search("Apache 207 - Sie ruft (Lyrics)");
+    print("Title: " + mmd3.getTitleName());
+    print("Artist Name: " + mmd3.getArtistName());
+    print("Album Name: "+ mmd3.getAlbumName());
+
   });
 }
