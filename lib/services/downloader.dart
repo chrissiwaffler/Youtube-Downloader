@@ -168,15 +168,41 @@ class Downloader {
     if (albumCoverLink != "" || albumCoverLink == null) {
       
       try {
+        /// get num for current artwork picture
+
+        // Build the directory.
+        var dir = await DownloadsPathProvider.downloadsDirectory;
+        var newDir;
+        await new Directory(dir.path + "/Youtube Downloader Music/artworks/").create(recursive: true)
+          .then((Directory d) {
+            newDir = d;
+          });
+        int num = -1;
+        String appendix;
+        String filePath;
+        
+        // do-while-loop wird solange wiederholt, bis ein Pfad gefunden wurde, der noch nicht existiert,
+        // d.h. die Nummer num gibt die Nummer des Artwork-Bilds an, das gespeichert wird
+        do {
+          num += 1;
+          if (num < 1) { appendix = ""; } else { appendix = "-" + num.toString(); }
+
+          filePath = path.join(newDir.uri.toFilePath(), "artwork" + appendix + ".jpg");
+          
+
+        } while(FileSystemEntity.typeSync(filePath) != FileSystemEntityType.notFound);
+        
+        
         // Saved with this method.
         var imageId = await ImageDownloader.downloadImage(albumCoverLink, destination: AndroidDestinationType.directoryDownloads
-          ..subDirectory("/Youtube Downloader Music/artworks/artwork.jpg"));
+          ..subDirectory("/Youtube Downloader Music/artworks/artwork" + "-" + num.toString() + ".jpg"));
         
         if (imageId == null) {
           return;
         }
         artworkPath = await ImageDownloader.findPath(imageId);
       } on PlatformException catch (error) {
+        print("PlatformException!");
         print(error);
       }
     }
@@ -187,10 +213,10 @@ class Downloader {
     final mde = MetadataEditor();
     await mde.setTags(pathFile, title, artist, album, artworkPath);
 
-    if (artworkPath != null) {
-      var file = File(artworkPath);
-      await file.delete();
-    }
+    // if (artworkPath != null) {
+    //   var file = File(artworkPath);
+    //   await file.delete();
+    // }
   }
 
   /// set new ending for music file e.g. mp3, wav or webm

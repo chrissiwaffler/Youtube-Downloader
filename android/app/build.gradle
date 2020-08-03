@@ -50,11 +50,11 @@ android {
         applicationId "com.thelegend27.youtube_downloader"
         minSdkVersion 24
         targetSdkVersion 28
-        versionCode 2
+        versionCode 3
         versionName "1.0.1"
     }
 
-    // keystore is usedx
+    // keystore is used
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
