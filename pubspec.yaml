@@ -68,6 +68,10 @@ dependencies:
   # needs also class_builder
   class_builder: ^1.0.1
 
+  # bug fix
+  characters: ^1.0.0
+
+
 
   # Admob integraton
   # firebase_admob: ^0.9.3+2
