@@ -151,25 +151,25 @@ class _HomepageState extends State<Homepage> {
 
   Widget homescreenColumnONSEARCH() {
     return Column(
-      children: <Widget>[
-        homescreenInputField(),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-          alignment: Alignment.centerLeft,
-          child: Text(
-            "Suchergebnisse",
-            style: TextStyle(
-              fontFamily: "SF Pro Rounded",
-              fontSize: 31,
-              color: homescreen_text_color,
-              fontWeight: FontWeight.w500
+        children: <Widget>[
+          homescreenInputField(),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+            alignment: Alignment.center,
+            child: Text(
+              "Suchergebnisse",
+              style: TextStyle(
+                fontFamily: "SF Pro Rounded",
+                fontSize: 31,
+                color: homescreen_text_color,
+                fontWeight: FontWeight.w500
+              ),
             ),
           ),
-        ),
 
-        // YT Search Results in shape of a list
-        SearchResultsView(10, query).buildView()
-      ],
+          // YT Search Results in shape of a list
+          Flexible(child: SearchResultsView(10, query).buildView())
+        ],
     );
   }
 
