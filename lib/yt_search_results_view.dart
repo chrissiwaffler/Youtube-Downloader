@@ -1,17 +1,44 @@
 import 'package:youtube_downloader/index.dart';
 import 'package:youtube_downloader/view_download_video_page.dart';
 
-class SearchResultsView {
-  SearchResultsView(int maxResults, String query) {
+class SearchResultsView extends StatefulWidget {
+  
+  SearchResultsView(int maxResults, String query, ScrollController sc) {
     ytData = new YouTubeData(maxResults);
     this.query = query;
+    _scrollController = sc;
+    this.maxResults = maxResults;
   }
+  int maxResults;
+  String query;
+  YouTubeData ytData;
+
+  // Scrollcontroller to check if the end is reached
+  ScrollController _scrollController;
+
+  @override
+  _SearchResultsViewState createState() => _SearchResultsViewState(maxResults, query, _scrollController);
+}
+
+class _SearchResultsViewState extends State<SearchResultsView> {
+  
+  _SearchResultsViewState(int maxResults, String query, ScrollController sc) {
+    ytData = new YouTubeData(maxResults);
+    this.query = query;
+    _scrollController = sc;
+  }
+
+
 
   String query;
   YouTubeData ytData;
 
+  // Scrollcontroller to check if the end is reached
+  ScrollController _scrollController;
+
   
-  Widget buildView() {
+  @override
+  Widget build(BuildContext context) {
     return FutureBuilder(
       future: ytData.search(query),
       builder: (context, snapshot) {
@@ -26,6 +53,7 @@ class SearchResultsView {
       },
     );
   }
+
 
   Widget _listViewBuilder(results) {
     return ListView.builder(
@@ -109,6 +137,8 @@ class SearchResultsView {
           ),
         );
       },
+    
+      controller: _scrollController,
     );
   }
 

@@ -21,12 +21,21 @@ class _HomepageState extends State<Homepage> {
   // determines whether the TextInputField should be in focus
   bool focusInputField;
 
+  // Scrollcontroller to check if the end is reached
+  ScrollController _scrollController;
+  int numSearchResults;
+
   void initState() {
     super.initState();
     isStart = true;
     _controller = TextEditingController();
     
     focusInputField = false;
+
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
+    numSearchResults = 10;
+
   }
 
   void dispose() {
@@ -213,12 +222,29 @@ class _HomepageState extends State<Homepage> {
           ),
 
           // YT Search Results in shape of a list
-          Flexible(child: SearchResultsView(10, query).buildView())
+          Flexible(child: SearchResultsView(numSearchResults, query, _scrollController))
         ],
     );
   }
 
+  _scrollListener() {
+    if (_scrollController.offset >= _scrollController.position.maxScrollExtent &&
+        !_scrollController.position.outOfRange) {
+      
+      // TODO maybe animation something :D
+      // setState(() async {
+      //   print("reach the bottom");
+      //   await _scrollController.animateTo(MediaQuery.of(context).size.height + 300 * numSearchResults,
+      //     curve: Curves.linear, 
+      //     duration: Duration (milliseconds: 500));
+      // });
 
+    }
+    
+    if (numSearchResults < 100) {
+      numSearchResults += 10;
+    }    
+  }
 
   /// Vorlage aus vorherigen Verisionen
   Widget makeInputFields(String inputDecorationText, TextEditingController txt) {
