@@ -31,7 +31,7 @@ class SearchResultsView {
     return ListView.builder(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
-      physics: const AlwaysScrollableScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
 
       itemCount: results.length,
       itemBuilder: (BuildContext context, int index) {
