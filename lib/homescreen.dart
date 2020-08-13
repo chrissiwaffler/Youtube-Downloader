@@ -86,46 +86,91 @@ class _HomepageState extends State<Homepage> {
       child: Padding(
         padding: EdgeInsets.only(
           top: 10, left: 20, right: 20, bottom: 10),
-          child: TextFormField(
-            controller: _controller,
-            textAlign: TextAlign.center,
-            cursorColor: Colors.redAccent,
-            decoration: InputDecoration(
-              // labelText: "Suche",
-              labelStyle: TextStyle(
-                color: Colors.grey,
-                fontFamily: "SF Pro Rounded"
-              ),
-              // use hintText so the pre text is in the middle
-              hintText: "Suche Youtube Videos",
-              border: OutlineInputBorder(
-                gapPadding: 3,
-                borderRadius: BorderRadius.circular(22),
-              ),
-              
-              filled: true,
-              fillColor: Colors.white,
+          child: Container(
+            child: TextFormField(
+              controller: _controller,
+              textAlign: TextAlign.center,
+              cursorColor: Colors.redAccent,
+              decoration: InputDecoration(
+                // labelText: "Suche",
+                labelStyle: TextStyle(
+                  color: Colors.grey,
+                  fontFamily: "SF Pro Rounded"
+                ),
+                // use hintText so the pre text is in the middle
+                hintText: "Suche Youtube Videos",
+                
+                // different border styles:
 
+                // cursor in border is active
+                focusedBorder: OutlineInputBorder(
+                  gapPadding: 3,
+                  borderRadius: BorderRadius.circular(22),
+                  borderSide: BorderSide(
+                    color: Colors.redAccent,
+                    width: 3
+                  ) 
+                ),
+
+                // style for normal, not-focused border
+                enabled: true,
+                enabledBorder: OutlineInputBorder(
+                  gapPadding: 3,
+                  borderRadius: BorderRadius.circular(22),
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                    width: 0
+                  )
+                ),
+
+
+                filled: true,
+                fillColor: Colors.white,
+
+                
+                prefixIcon: IconButton(
+                  icon: Icon(
+                    Icons.mic,
+                    color: Colors.red[300],
+                  ),
+                  onPressed: () {
+                    // TODO
+                  },
+
+                  padding: EdgeInsets.only(left: 10),
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.red[300],
+                  ),
+
+                  // when you tap on the search item
+                  onPressed: () {
+                    callSearch(_controller.text);
+                  },
+
+                  padding: EdgeInsets.only(right: 10),
+                )
+              ),
+
+              // when you click enter on the keyboard
+              onFieldSubmitted: (String value) async {
+                callSearch(_controller.text);
+              },
               
-              prefixIcon: Icon(Icons.mic),
-              suffixIcon: IconButton(
-                icon: Icon(Icons.search),
-                // when you tap on the search item
-                onPressed: () {
-                  callSearch(_controller.text);
-                },
-              )
+              autofocus: focusInputField,
+
             ),
-
-            // when you click enter on the keyboard
-            onFieldSubmitted: (String value) async {
-              callSearch(_controller.text);
-            },
-            
-            autofocus: focusInputField,
-
+            decoration: BoxDecoration(
+              boxShadow: [BoxShadow(
+                offset: Offset(5, 5),
+                color: Color.fromRGBO(0, 0, 0, 0.16),
+                blurRadius: 15
+              )]
+            ),
           ),
-        )
+      ),
       
     );
   }
