@@ -8,29 +8,48 @@ class SearchResultsView extends StatefulWidget {
     this.query = query;
     _scrollController = sc;
     this.maxResults = maxResults;
+    // createState();
   }
+  // void dispose() {
+
+  // }
+  // void search(int maxResults, String query, ScrollController sc){
+  //   this.maxResults = maxResults;
+  //   ytData = new YouTubeData(maxResults);
+  //   this.query = query;
+  //   _scrollController = sc;
+  // }
+
   int maxResults;
   String query;
   YouTubeData ytData;
 
   // Scrollcontroller to check if the end is reached
-  ScrollController _scrollController;
+  static ScrollController _scrollController;
 
   @override
   _SearchResultsViewState createState() => _SearchResultsViewState(maxResults, query, _scrollController);
+
+  // _SearchResultsViewState _srvs;
+
+  // @override
+  // _SearchResultsViewState createState() {
+  //   _srvs = _SearchResultsViewState(maxResults, query, _scrollController); 
+  //   return _srvs;
+  // }  
 }
 
 class _SearchResultsViewState extends State<SearchResultsView> {
   
   _SearchResultsViewState(int maxResults, String query, ScrollController sc) {
     ytData = new YouTubeData(maxResults);
-    this.query = query;
+    _query = query;
     _scrollController = sc;
   }
 
 
 
-  String query;
+  static String _query;
   YouTubeData ytData;
 
   // Scrollcontroller to check if the end is reached
@@ -40,7 +59,7 @@ class _SearchResultsViewState extends State<SearchResultsView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ytData.search(query),
+      future: ytData.search(_query),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {

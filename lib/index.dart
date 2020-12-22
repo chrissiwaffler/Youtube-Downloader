@@ -14,7 +14,7 @@ export 'package:youtube_downloader/services/metadata_editor.dart';
 
 
 export 'dart:convert';
-export 'package:youtube_extractor/youtube_extractor.dart';
+// export 'package:youtube_extractor/youtube_extractor.dart';
 export 'package:youtube_api/youtube_api.dart';
 // export 'package:youtube_api_v3/youtube_api_v3.dart';
 

@@ -25,6 +25,8 @@ class _HomepageState extends State<Homepage> {
   ScrollController _scrollController;
   int numSearchResults;
 
+  // SearchResultsView searchResultsView;
+
   void initState() {
     super.initState();
     isStart = true;
@@ -36,6 +38,7 @@ class _HomepageState extends State<Homepage> {
     _scrollController.addListener(_scrollListener);
     numSearchResults = 10;
 
+    // searchResultsView = SearchResultsView(0, "query", null);
   }
 
   void dispose() {
@@ -309,6 +312,8 @@ class _HomepageState extends State<Homepage> {
 
   void callSearch(String query) {
     print(query);
+    // searchResultsView.dispose();
+    // searchResultsView.search(numSearchResults, this.query, _scrollController);
     // TODO Wiederumändern
     setState(() {
       isStart = false;
