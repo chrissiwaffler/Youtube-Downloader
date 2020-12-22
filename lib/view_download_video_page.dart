@@ -34,7 +34,7 @@ class _DownloadPageState extends State<DownloadPage> {
       initialVideoId: widget.videoID,
       flags: YoutubePlayerFlags(
         mute: false,
-        autoPlay: true
+        autoPlay: false
       )
     );
 
