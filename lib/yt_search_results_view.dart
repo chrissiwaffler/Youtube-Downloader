@@ -5,7 +5,7 @@ class SearchResultsView extends StatefulWidget {
   
   SearchResultsView(int maxResults, String query, ScrollController sc) {
     ytData = new YouTubeData(maxResults);
-    this.query = query;
+    _query = query;
     _scrollController = sc;
     this.maxResults = maxResults;
     // createState();
@@ -21,22 +21,23 @@ class SearchResultsView extends StatefulWidget {
   // }
 
   int maxResults;
-  String query;
+  static String _query;
   YouTubeData ytData;
 
   // Scrollcontroller to check if the end is reached
   static ScrollController _scrollController;
+  static _SearchResultsViewState _srvs;
 
   @override
-  _SearchResultsViewState createState() => _SearchResultsViewState(maxResults, query, _scrollController);
+  // _SearchResultsViewState createState() => _SearchResultsViewState(maxResults, _query, _scrollController);
+  _SearchResultsViewState createState(){
+    _srvs = _SearchResultsViewState(maxResults, _query, _scrollController);
+    return _srvs;
+  }
 
-  // _SearchResultsViewState _srvs;
-
-  // @override
-  // _SearchResultsViewState createState() {
-  //   _srvs = _SearchResultsViewState(maxResults, query, _scrollController); 
-  //   return _srvs;
-  // }  
+  void search(String query) {
+    _srvs.search(query);
+  }
 }
 
 class _SearchResultsViewState extends State<SearchResultsView> {
@@ -47,15 +48,19 @@ class _SearchResultsViewState extends State<SearchResultsView> {
     _scrollController = sc;
   }
 
-
-
   static String _query;
   YouTubeData ytData;
 
   // Scrollcontroller to check if the end is reached
   ScrollController _scrollController;
 
-  
+  void search(String query) {
+    setState(() {
+      _query = query;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

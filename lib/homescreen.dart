@@ -25,7 +25,7 @@ class _HomepageState extends State<Homepage> {
   ScrollController _scrollController;
   int numSearchResults;
 
-  // SearchResultsView searchResultsView;
+  SearchResultsView searchResultsView;
 
   void initState() {
     super.initState();
@@ -207,6 +207,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   Widget homescreenColumnONSEARCH() {
+    searchResultsView = SearchResultsView(numSearchResults, query, _scrollController);
     return Column(
         children: <Widget>[
           homescreenInputField(),
@@ -225,7 +226,7 @@ class _HomepageState extends State<Homepage> {
           ),
 
           // YT Search Results in shape of a list
-          Flexible(child: SearchResultsView(numSearchResults, query, _scrollController))
+          Flexible(child: searchResultsView)
         ],
     );
   }
@@ -318,6 +319,8 @@ class _HomepageState extends State<Homepage> {
     setState(() {
       isStart = false;
       this.query = query;
+
+      searchResultsView.search(query);
     });
 
     // folgende Zeilen wieder entfernen
