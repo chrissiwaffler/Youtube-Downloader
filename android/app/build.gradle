@@ -50,8 +50,8 @@ android {
         applicationId "com.thelegend27.youtube_downloader"
         minSdkVersion 24
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.0.1"
+        versionCode 4
+        versionName "1.0.2+1"
     }
 
     // keystore is used
