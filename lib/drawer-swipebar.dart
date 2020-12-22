@@ -53,8 +53,8 @@ class _SwipeBarState extends State<SwipeBar> {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color.fromRGBO(255, 255, 255, 1.0), Color.fromRGBO(44, 72, 171, 1.0)],
-          tileMode: TileMode.repeated,
+          // colors: [Color.fromRGBO(255, 255, 255, 1.0), Color.fromRGBO(44, 72, 171, 1.0)],
+          // tileMode: TileMode.repeated,
         )
       ) 
     );

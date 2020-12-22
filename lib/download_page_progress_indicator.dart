@@ -18,8 +18,8 @@ class _ProgressIndiState extends State<ProgressIndi> with SingleTickerProviderSt
   @override
   void initState() { 
     _animationController = AnimationController(
-      duration: Duration(milliseconds: 1800),
-      vsync: this
+      duration: Duration(milliseconds: 1800), vsync: this,
+      // vsync: this
     );
     _animationColor = _animationController.
       drive(ColorTween(begin: beginColor, end: endColor));
