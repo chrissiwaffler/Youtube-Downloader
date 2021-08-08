@@ -44,7 +44,7 @@ app.*.map.json
 
 # secrets of app
 # API Keys
-lib/secrets
+# lib/private
 
 # google services .json file
 android/app/google-services.json

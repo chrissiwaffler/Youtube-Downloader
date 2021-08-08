@@ -1,6 +1,6 @@
 import 'package:http/http.dart';
 import 'package:youtube_downloader/index.dart';
-import 'package:youtube_downloader/secrets/genius_apikey.dart';
+import 'package:youtube_downloader/private/genius_apikey.dart';
 
 /// using the Genius API
 class GeniusLyrics {

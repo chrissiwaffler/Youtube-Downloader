@@ -1,6 +1,6 @@
 import 'package:youtube_downloader/index.dart';
 import 'package:http/http.dart' as http;
-import 'package:youtube_downloader/secrets/deezer_apikey.dart';
+import 'package:youtube_downloader/private/deezer_apikey.dart';
 
 /* using the Deezer API */
 class MusicMetadata {

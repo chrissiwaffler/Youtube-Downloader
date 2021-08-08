@@ -1,5 +1,5 @@
 import 'package:youtube_downloader/index.dart';
-import 'package:youtube_downloader/secrets/youtube_data_apikey.dart';
+import 'package:youtube_downloader/private/youtube_data_apikey.dart';
 
 
 class YouTubeData {
@@ -20,9 +20,6 @@ class YouTubeData {
   void setMaxResults(int maxResults) {
     ytApi = new YoutubeAPI(API_KEY, maxResults: maxResults, type: "Video");
   }
-
-
-  //TODO vllt brauch ich die folgenden Codezeilen gar nicht :/
 
   /// returning the title of the video with the given index of the video in the previous search
   String getTitle(int indexVideo) {
